@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import Try from './Try';
 
 const getNumbers = () => {
@@ -11,7 +11,8 @@ const getNumbers = () => {
   return array;
 }
 
-const NumberBaseBall = () => {
+// pure component - memo -> render performance 
+const NumberBaseBall = memo(() => {
   const [answer, setAnswer] = useState(getNumbers());
   const [result, setResult] = useState('');
   const [value, setValue] = useState('');
@@ -32,8 +33,8 @@ const NumberBaseBall = () => {
       const answerArray = value.split('').map(v => parseInt(v));
       let strike = 0;
       let ball = 0;
-      if (tries.length >= 4) {
-        setResult(`5번 넘게 틀려서 실패! 답은 ${answer.join(',')}였습니다`);
+      if (tries.length >= 9) {
+        setResult(`10번 넘게 틀려서 실패! 답은 ${answer.join(',')}였습니다`);
         alert('게임을 다시 시작합니다');
         setValue('');
         setAnswer(getNumbers());
@@ -74,6 +75,6 @@ const NumberBaseBall = () => {
       </ul>
     </>
   );
-};
+});
 
 export default NumberBaseBall;

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-const Try = ({tryInfo}) => {
+// memo - purecomponent
+const Try = memo(({tryInfo}) => {
 
   return (
     <li>
@@ -8,6 +9,6 @@ const Try = ({tryInfo}) => {
       <div>{tryInfo.result}</div>
     </li>
   );
-};
+});
 
 export default Try;
