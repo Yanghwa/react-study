@@ -22,7 +22,7 @@ const WordRealy = () => {
 
   const onChangeInput = (e) => {
     setValue(e.target.value);
-  }
+  };
 
   return (
     <>
