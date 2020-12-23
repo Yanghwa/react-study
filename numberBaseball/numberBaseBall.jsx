@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import Try from './Try';
 
 const getNumbers = () => {
@@ -17,6 +17,7 @@ const NumberBaseBall = memo(() => {
   const [result, setResult] = useState('');
   const [value, setValue] = useState('');
   const [tries, setTries] = useState([]);
+  const inputRef = useRef(null);
 
   const onSubmitForm = (e) => {
     e.preventDefault();
@@ -29,6 +30,7 @@ const NumberBaseBall = memo(() => {
       setValue('');
       setAnswer(getNumbers());
       setTries([]);
+      inputRef.current.focus();
     } else {
       const answerArray = value.split('').map(v => parseInt(v));
       let strike = 0;
@@ -39,6 +41,7 @@ const NumberBaseBall = memo(() => {
         setValue('');
         setAnswer(getNumbers());
         setTries([]);
+        inputRef.current.focus();
       } else {
         for (let i = 0; i < 4; i++) {
           if (answerArray[i] === answer[i]) {
@@ -51,6 +54,7 @@ const NumberBaseBall = memo(() => {
           return [...preTries, {try: value, result: `${strike} 스트라이크, ${ball} 볼`}]
         });
         setValue('');
+        inputRef.current.focus();
       }
     }
   }
@@ -63,7 +67,7 @@ const NumberBaseBall = memo(() => {
     <>
       <h1>{result}</h1>
       <form onSubmit={onSubmitForm}>
-        <input maxLength={4} value={value} onChange={onChangeInput} />
+        <input ref={inputRef} maxLength={4} value={value} onChange={onChangeInput} />
       </form>
       <div>시도: {tries.length}</div>
       <ul>
