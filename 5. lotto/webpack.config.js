@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  name: 'speed-setting',
+  name: 'lotto-setting',
   mode: 'development',
   devtool: 'eval',
 
